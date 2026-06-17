@@ -33,7 +33,7 @@ export default function Marketing() {
       </div>
 
       {/* Stats Row */}
-      <div className="stat-cards-grid" style={{ marginBottom: 24 }}>
+      <div className="stat-cards-grid">
         {[
           { label: 'Total Ad Spend', value: '$3,420', change: '+18%', positive: true },
           { label: 'Revenue from Ads', value: '$13,920', change: '+24%', positive: true },
@@ -45,7 +45,7 @@ export default function Marketing() {
             <div className="stat-card-value">{s.value}</div>
             <div className="stat-card-change positive">
               <span>▲</span> <span>{s.change}</span>
-              <span style={{ color: 'var(--color-text-subdued)', fontWeight: 400 }}>vs last month</span>
+              <span className="stat-vs">vs last month</span>
             </div>
           </div>
         ))}
@@ -57,11 +57,11 @@ export default function Marketing() {
           <table className="data-table">
             <thead>
               <tr>
-                <th style={{ paddingLeft: 20 }}>Campaign</th>
+                <th className="marketing-table-th-first">Campaign</th>
                 <th>Type</th>
                 <th>Status</th>
-                <th style={{ textAlign: 'right' }}>Clicks</th>
-                <th style={{ textAlign: 'right', paddingRight: 20 }}>Revenue</th>
+                <th className="marketing-table-th-right">Clicks</th>
+                <th className="marketing-table-th-last">Revenue</th>
               </tr>
             </thead>
             <tbody>
@@ -69,40 +69,22 @@ export default function Marketing() {
                 const Icon = CHANNEL_ICONS[c.type] || Megaphone;
                 return (
                   <tr key={i}>
-                    <td style={{ paddingLeft: 20 }}>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-                        <div style={{
-                          width: 32,
-                          height: 32,
-                          borderRadius: 6,
-                          background: 'var(--color-surface)',
-                          border: '1px solid var(--color-border)',
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          flexShrink: 0,
-                        }}>
+                    <td className="marketing-campaign-cell">
+                      <div className="marketing-campaign-inner">
+                        <div className="marketing-campaign-icon">
                           <Icon size={15} color="var(--color-text-secondary)" />
                         </div>
-                        <span style={{ fontWeight: 500 }}>{c.name}</span>
+                        <span className="marketing-campaign-name">{c.name}</span>
                       </div>
                     </td>
-                    <td style={{ color: 'var(--color-text-secondary)' }}>{c.type}</td>
+                    <td className="marketing-td-type">{c.type}</td>
                     <td>
-                      <span style={{
-                        display: 'inline-flex',
-                        padding: '2px 8px',
-                        borderRadius: 4,
-                        fontSize: 12,
-                        fontWeight: 500,
-                        background: c.statusBg,
-                        color: c.statusColor,
-                      }}>
+                      <span className="marketing-status-badge" style={{ background: c.statusBg, color: c.statusColor }}>
                         {c.status}
                       </span>
                     </td>
-                    <td style={{ textAlign: 'right', fontWeight: 500 }}>{c.clicks}</td>
-                    <td style={{ textAlign: 'right', fontWeight: 500, paddingRight: 20 }}>{c.revenue}</td>
+                    <td className="marketing-td-clicks">{c.clicks}</td>
+                    <td className="marketing-td-revenue">{c.revenue}</td>
                   </tr>
                 );
               })}

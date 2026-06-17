@@ -33,37 +33,25 @@ export default function Settings() {
         </div>
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 16, marginBottom: 24 }}>
+      <div className="settings-grid">
         {SETTINGS_SECTIONS.map((section, i) => {
           const Icon = section.icon;
           return (
-            <div
-              key={i}
-              className="card"
-              style={{ cursor: 'pointer', transition: 'box-shadow 0.15s ease' }}
+            <div key={i} className="card settings-card-item"
               onMouseEnter={(e) => e.currentTarget.style.boxShadow = 'var(--shadow-card-hover)'}
               onMouseLeave={(e) => e.currentTarget.style.boxShadow = 'var(--shadow-card)'}
             >
-              <div style={{ padding: '20px', display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 12 }}>
-                <div style={{ display: 'flex', gap: 12, flex: 1 }}>
-                  <div style={{
-                    width: 40,
-                    height: 40,
-                    borderRadius: 8,
-                    background: `${section.color}18`,
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    flexShrink: 0,
-                  }}>
+              <div className="settings-card-body">
+                <div className="settings-card-left">
+                  <div className="settings-card-icon" style={{ background: `${section.color}18` }}>
                     <Icon size={18} color={section.color} />
                   </div>
                   <div>
-                    <div style={{ fontWeight: 600, fontSize: 14, marginBottom: 3 }}>{section.label}</div>
-                    <div style={{ fontSize: 12, color: 'var(--color-text-secondary)', lineHeight: 1.4 }}>{section.description}</div>
+                    <div className="settings-card-label">{section.label}</div>
+                    <div className="settings-card-desc">{section.description}</div>
                   </div>
                 </div>
-                <ChevronRight size={16} color="var(--color-text-subdued)" style={{ flexShrink: 0, marginTop: 4 }} />
+                <ChevronRight size={16} color="var(--color-text-subdued)" className="settings-card-chevron" />
               </div>
             </div>
           );
@@ -72,99 +60,23 @@ export default function Settings() {
 
       {/* Store Details Form */}
       <Card title="Store details">
-        <div className="card-body" style={{ maxWidth: 600 }}>
-          <div style={{ display: 'grid', gap: 16 }}>
+        <div className="card-body settings-form-body">
+          <div className="settings-form-grid">
             <div>
-              <label style={{ display: 'block', fontSize: 13, fontWeight: 500, marginBottom: 6, color: 'var(--color-text-primary)' }}>
-                Store name
-              </label>
-              <input
-                type="text"
-                value={storeName}
-                onChange={(e) => setStoreName(e.target.value)}
-                style={{
-                  width: '100%',
-                  height: 36,
-                  padding: '0 12px',
-                  border: '1px solid var(--color-border)',
-                  borderRadius: 4,
-                  fontSize: 14,
-                  color: 'var(--color-text-primary)',
-                  background: 'var(--color-white)',
-                  outline: 'none',
-                  transition: 'border-color 0.15s ease',
-                }}
-                onFocus={(e) => e.target.style.borderColor = 'var(--color-primary)'}
-                onBlur={(e) => e.target.style.borderColor = 'var(--color-border)'}
-              />
+              <label className="settings-form-label">Store name</label>
+              <input type="text" className="settings-form-input" value={storeName} onChange={(e) => setStoreName(e.target.value)} />
             </div>
             <div>
-              <label style={{ display: 'block', fontSize: 13, fontWeight: 500, marginBottom: 6, color: 'var(--color-text-primary)' }}>
-                Account email
-              </label>
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                style={{
-                  width: '100%',
-                  height: 36,
-                  padding: '0 12px',
-                  border: '1px solid var(--color-border)',
-                  borderRadius: 4,
-                  fontSize: 14,
-                  color: 'var(--color-text-primary)',
-                  background: 'var(--color-white)',
-                  outline: 'none',
-                  transition: 'border-color 0.15s ease',
-                }}
-                onFocus={(e) => e.target.style.borderColor = 'var(--color-primary)'}
-                onBlur={(e) => e.target.style.borderColor = 'var(--color-border)'}
-              />
+              <label className="settings-form-label">Account email</label>
+              <input type="email" className="settings-form-input" value={email} onChange={(e) => setEmail(e.target.value)} />
             </div>
             <div>
-              <label style={{ display: 'block', fontSize: 13, fontWeight: 500, marginBottom: 6, color: 'var(--color-text-primary)' }}>
-                Phone number
-              </label>
-              <input
-                type="tel"
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-                style={{
-                  width: '100%',
-                  height: 36,
-                  padding: '0 12px',
-                  border: '1px solid var(--color-border)',
-                  borderRadius: 4,
-                  fontSize: 14,
-                  color: 'var(--color-text-primary)',
-                  background: 'var(--color-white)',
-                  outline: 'none',
-                  transition: 'border-color 0.15s ease',
-                }}
-                onFocus={(e) => e.target.style.borderColor = 'var(--color-primary)'}
-                onBlur={(e) => e.target.style.borderColor = 'var(--color-border)'}
-              />
+              <label className="settings-form-label">Phone number</label>
+              <input type="tel" className="settings-form-input" value={phone} onChange={(e) => setPhone(e.target.value)} />
             </div>
             <div>
-              <label style={{ display: 'block', fontSize: 13, fontWeight: 500, marginBottom: 6, color: 'var(--color-text-primary)' }}>
-                Industry
-              </label>
-              <select
-                style={{
-                  width: '100%',
-                  height: 36,
-                  padding: '0 12px',
-                  border: '1px solid var(--color-border)',
-                  borderRadius: 4,
-                  fontSize: 14,
-                  color: 'var(--color-text-primary)',
-                  background: 'var(--color-white)',
-                  outline: 'none',
-                  cursor: 'pointer',
-                  appearance: 'none',
-                }}
-              >
+              <label className="settings-form-label">Industry</label>
+              <select className="settings-form-select">
                 <option>Clothing and accessories</option>
                 <option>Electronics</option>
                 <option>Home and garden</option>
@@ -173,16 +85,12 @@ export default function Settings() {
             </div>
           </div>
 
-          <div style={{ marginTop: 20, display: 'flex', gap: 8, alignItems: 'center' }}>
+          <div className="settings-form-actions">
             <button className="btn btn-primary" onClick={handleSave}>
               {saved ? '✓ Saved' : 'Save changes'}
             </button>
             <button className="btn btn-secondary">Discard</button>
-            {saved && (
-              <span style={{ fontSize: 13, color: 'var(--color-success)' }}>
-                Settings saved successfully
-              </span>
-            )}
+            {saved && <span className="settings-save-msg">Settings saved successfully</span>}
           </div>
         </div>
       </Card>

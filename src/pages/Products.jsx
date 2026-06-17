@@ -83,7 +83,7 @@ export default function Products() {
 
       <Card>
         {/* Filter Tabs */}
-        <div className="filter-tabs" style={{ padding: '0 20px' }}>
+        <div className="filter-tabs filter-tabs-padded">
           {TABS.map((tab) => (
             <button
               key={tab.id}
@@ -97,7 +97,7 @@ export default function Products() {
         </div>
 
         {/* Toolbar */}
-        <div className="table-toolbar" style={{ padding: '0 20px' }}>
+        <div className="table-toolbar table-toolbar-padded">
           <div className="search-bar">
             <Search className="search-bar-icon" size={15} />
             <input
@@ -114,25 +114,12 @@ export default function Products() {
           {paginated.map((product) => (
             <tr key={product.id}>
               <td>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                  <div
-                    style={{
-                      width: 40,
-                      height: 40,
-                      borderRadius: 4,
-                      background: product.color,
-                      flexShrink: 0,
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                    }}
-                  >
-                    <div style={{ width: 16, height: 16, borderRadius: 2, background: 'rgba(255,255,255,0.3)' }} />
+                <div className="product-name-cell">
+                  <div className="product-thumb" style={{ background: product.color }}>
+                    <div className="product-thumb-inner" />
                   </div>
                   <div>
-                    <div style={{ fontWeight: 500, color: 'var(--color-primary)' }}>
-                      {product.name}
-                    </div>
+                    <div className="product-name-link">{product.name}</div>
                   </div>
                 </div>
               </td>
@@ -144,7 +131,7 @@ export default function Products() {
           ))}
           {paginated.length === 0 && (
             <tr>
-              <td colSpan={5} style={{ textAlign: 'center', padding: '40px', color: 'var(--color-text-subdued)' }}>
+              <td colSpan={5} className="td-empty">
                 No products found
               </td>
             </tr>

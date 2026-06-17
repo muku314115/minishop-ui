@@ -45,7 +45,7 @@ export default function Discounts() {
 
       <Card>
         {/* Tabs */}
-        <div className="filter-tabs" style={{ padding: '0 20px' }}>
+        <div className="filter-tabs filter-tabs-padded">
           {[
             { id: 'all', label: 'All', count: 6 },
             { id: 'active', label: 'Active', count: 4 },
@@ -64,7 +64,7 @@ export default function Discounts() {
         </div>
 
         {/* Toolbar */}
-        <div className="table-toolbar" style={{ padding: '0 20px' }}>
+        <div className="table-toolbar table-toolbar-padded">
           <div className="search-bar">
             <Search className="search-bar-icon" size={15} />
             <input
@@ -81,36 +81,34 @@ export default function Discounts() {
           <table className="data-table">
             <thead>
               <tr>
-                <th style={{ paddingLeft: 20 }}>Discount code</th>
+                <th className="th-first">Discount code</th>
                 <th>Type</th>
                 <th>Value</th>
                 <th>Minimum order</th>
                 <th>Usage</th>
                 <th>Expires</th>
-                <th style={{ paddingRight: 20 }}>Status</th>
+                <th className="th-last">Status</th>
               </tr>
             </thead>
             <tbody>
               {filtered.map((d) => (
                 <tr key={d.id}>
-                  <td style={{ paddingLeft: 20 }}>
-                    <span style={{ fontFamily: 'monospace', fontWeight: 600, fontSize: 13, color: 'var(--color-text-primary)', background: 'var(--color-surface)', padding: '2px 6px', borderRadius: 3, border: '1px solid var(--color-border)' }}>
-                      {d.code}
-                    </span>
+                  <td className="td-first">
+                    <span className="discount-code">{d.code}</span>
                   </td>
                   <td className="text-secondary">{d.type}</td>
-                  <td style={{ fontWeight: 500 }}>{d.value}</td>
+                  <td className="td-value">{d.value}</td>
                   <td className="text-secondary">{d.minOrder}</td>
                   <td className="text-secondary">{d.usage}</td>
                   <td className="text-secondary">{d.expires}</td>
-                  <td style={{ paddingRight: 20 }}>
+                  <td className="td-last">
                     <Badge variant={d.statusV}>{d.status}</Badge>
                   </td>
                 </tr>
               ))}
               {filtered.length === 0 && (
                 <tr>
-                  <td colSpan={7} style={{ textAlign: 'center', padding: '40px', color: 'var(--color-text-subdued)' }}>
+                  <td colSpan={7} className="td-empty">
                     No discounts found
                   </td>
                 </tr>

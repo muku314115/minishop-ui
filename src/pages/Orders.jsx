@@ -84,7 +84,7 @@ export default function Orders() {
             <h1 className="page-title">Orders</h1>
             <p className="page-subtitle">Manage and fulfill your customer orders</p>
           </div>
-          <div style={{ display: 'flex', gap: '8px' }}>
+          <div className="orders-header-actions">
             <button className="btn btn-secondary">
               <Download size={15} />
               Export
@@ -99,7 +99,7 @@ export default function Orders() {
 
       <Card>
         {/* Filter Tabs */}
-        <div className="filter-tabs" style={{ padding: '0 20px' }}>
+        <div className="filter-tabs filter-tabs-padded">
           {TABS.map((tab) => (
             <button
               key={tab.id}
@@ -113,7 +113,7 @@ export default function Orders() {
         </div>
 
         {/* Toolbar */}
-        <div className="table-toolbar" style={{ padding: '0 20px' }}>
+        <div className="table-toolbar table-toolbar-padded">
           <div className="search-bar">
             <Search className="search-bar-icon" size={15} />
             <input
@@ -134,12 +134,12 @@ export default function Orders() {
               <td>{order.customer}</td>
               <td><Badge variant={order.paymentV}>{order.payment}</Badge></td>
               <td><Badge variant={order.fulfillmentV}>{order.fulfillment}</Badge></td>
-              <td className="text-right" style={{ fontWeight: 500 }}>{order.total}</td>
+              <td className="td-total">{order.total}</td>
             </tr>
           ))}
           {paginated.length === 0 && (
             <tr>
-              <td colSpan={6} style={{ textAlign: 'center', padding: '40px', color: 'var(--color-text-subdued)' }}>
+              <td colSpan={6} className="td-empty">
                 No orders found
               </td>
             </tr>
